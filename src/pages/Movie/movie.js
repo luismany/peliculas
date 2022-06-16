@@ -23,7 +23,7 @@ export default function Movie() {
 }
 
 function RenderMovie(props) {
-    const { movieInfo: { title, backdrop_path } } = props;
+    const { movieInfo: { backdrop_path, poster_path } } = props;
     const backdropPath = `https://image.tmdb.org/t/p/original${backdrop_path}`;
     console.log(props.movieInfo);
     return (
@@ -33,13 +33,49 @@ function RenderMovie(props) {
             <div className="movie__dark" />
             <Row>
                 <Col span={8} offset={3} className="movie__poster">
-                    Caratula ...
+                    <PosterMovie image={ poster_path} />
                 </Col>
                 <Col span={10} className="movie__info">
-                    MovieInfo ...
+                    <MovieInfo movieInfo={ props.movieInfo} />
                 </Col>
             </Row>
             
         </div>
+    );
+}
+
+function PosterMovie(props) {
+
+    const { image } = props;
+    const posterPath = `https://image.tmdb.org/t/p/original${image}`;
+   
+    return <div style={{ backgroundImage: `url('${posterPath}')` }} />; 
+}
+
+function MovieInfo(props) {
+
+    const { movieInfo:
+        { id, title, release_date, overview, genres } } = props
+    
+    return (
+        <>
+            <div className="movie__info-header">
+                <h1>
+                    {title}
+                    <span>{moment(release_date, "yyyy-mm-dd").format("yyyy")}</span>
+                    <button>Ver trailer</button>
+                </h1>
+            </div>
+            <div className="movie__info-content">
+                <h3>Informacion General</h3>
+                <p>{overview}</p>
+                <h3>Generos</h3>
+                <ul>
+                    {genres.map(gen => (
+                        <li key={gen.id}>{gen.name }</li>
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 }
