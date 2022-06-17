@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { List, Avatar, Button } from "antd";
 import Loading from "../Loading/Loading";
+import { RightOutlined  } from '@ant-design/icons';
 
 import './MovieList.scss';
 
@@ -37,7 +38,7 @@ function RenderMovie(props) {
                 title={<Link to={`/movie/${id}`}>{ title}</Link>}
             />
             <Link to={`/movie/${id}`}>
-                <Button type="primary" shape="circle" icon=">"/>
+                <Button type="primary" shape="circle" icon={<RightOutlined />}/>
             </Link>
         </List.Item>
         

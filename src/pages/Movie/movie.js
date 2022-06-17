@@ -1,10 +1,12 @@
-import React from "react";
-import { Row, Col, Botton } from "antd";
+import React, { useState } from "react";
+import { Row, Col, Button } from "antd";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import UseFetch from "../../hooks/useFetch";
 import { UrlApi, Api } from "../../utils/Constans";
 import Loading from "../../componentes/Loading/Loading";
+import ModalVideo from "../../componentes/ModalVideo/ModalVideo";
+import { PlayCircleOutlined } from '@ant-design/icons';
 
 import "./Movie.scss";
 
@@ -25,7 +27,7 @@ export default function Movie() {
 function RenderMovie(props) {
     const { movieInfo: { backdrop_path, poster_path } } = props;
     const backdropPath = `https://image.tmdb.org/t/p/original${backdrop_path}`;
-    console.log(props.movieInfo);
+    //console.log(props.movieInfo);
     return (
         <div className="movie"
         style={{backgroundImage: `url('${backdropPath}')`}}
@@ -55,7 +57,32 @@ function PosterMovie(props) {
 function MovieInfo(props) {
 
     const { movieInfo:
-        { id, title, release_date, overview, genres } } = props
+        { id, title, release_date, overview, genres } } = props;
+    const [isVisibleModal, setIsVisibleModal] = useState(false);
+    const videoMovie = UseFetch(`${UrlApi}/movie/${id}/videos?api_key=${Api}&language=es-ES`);
+
+    const openModal = () => setIsVisibleModal(true);
+    const closeModal = () => setIsVisibleModal(false);
+
+    const renderVideo = () => {
+        if (videoMovie.result) {
+            if ( videoMovie.result.results.length > 0) {
+                return (
+                    <>
+                        <Button icon={<PlayCircleOutlined />} onClick={openModal}>
+                            Ver trailer
+                        </Button>
+                        <ModalVideo
+                            videoKey={videoMovie.result.results[0].key}
+                            videoPlatform={videoMovie.result.results[0].site}
+                            isOpen={isVisibleModal}
+                            close={closeModal}
+                        />
+                    </>
+                );
+            }
+        }
+    }
     
     return (
         <>
@@ -63,8 +90,9 @@ function MovieInfo(props) {
                 <h1>
                     {title}
                     <span>{moment(release_date, "yyyy-mm-dd").format("yyyy")}</span>
-                    <button>Ver trailer</button>
+                    
                 </h1>
+               {renderVideo()} 
             </div>
             <div className="movie__info-content">
                 <h3>Informacion General</h3>
