@@ -21,7 +21,7 @@ function App() {
 
         <Content>
           <Routes>
-            <Route exact path='/' element={<Home />} />
+            <Route exact path='/peliculas' element={<Home />} />
             <Route exact path='new-movies' element={ <NewMovies/>}/>
             <Route exact path='/popular' element={<Popular />} />
             <Route exact path='/search' element={<Search />} />

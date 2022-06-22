@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "antd";
+import {Menu}   from "antd";
 import { ReactComponent as Logo } from '../../asets/img/logo.svg';
 
 import  './MenuTop.scss'
@@ -19,7 +19,7 @@ export default function MenuTop() {
                 style={{lineHeight:"64px"}}
             >
                 <Menu.Item key="1">
-                    <Link to="/">Home</Link>
+                    <Link to="/peliculas">Home</Link>
                 </Menu.Item>
                 <Menu.Item key="2">
                     <Link to="/new-movies">Nuevos Lanzamientos</Link>
