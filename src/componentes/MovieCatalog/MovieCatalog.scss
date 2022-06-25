@@ -1,15 +1,18 @@
-.movie-catalog{
+
+.movie-catalog {
     display: flex !important;
     justify-content: center !important;
     margin-top: 25px;
-
-    .ant-card-cover{
-        img{
-            height: 350px !important;
-        }
+    margin-left: 25px;
+    margin-right: 25px;
+  
+    .ant-card-cover {
+      img {
+        height: 350px !important;
+      }
     }
-
-    .ant-card-meta-title{
-        text-align: center !important;
+  
+    .ant-card-meta-title {
+      text-align: center !important;
     }
-}
+  }

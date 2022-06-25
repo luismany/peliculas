@@ -12,10 +12,10 @@ export default function NewMovies() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(
+      const respuesta = await fetch(
         `${UrlApi}/movie/now_playing?api_key=${Api}&lenguage=es-ES&page=${page}`
       );
-      const movies = await response.json();
+      const movies = await respuesta.json();
       setMovieList(movies);
     })();
   }, [page]);
@@ -25,6 +25,7 @@ export default function NewMovies() {
   };
 
   return (
+    
     <Row>
       <Col span="24" style={{ textAlign: "center", marginTop: 25 }}>
         <h1 style={{ fontSize: 35, fontWeight: "bold" }}>
@@ -33,9 +34,11 @@ export default function NewMovies() {
       </Col>
       {movieList.results ? (
         <Row>
-          <Col span="24">
-            <MovieCatalog movies={movieList} />
+          <MovieCatalog movies={movieList} />
+           <Col span="24">
+           
           </Col>
+         
           <Col span="24">
             <Pagination
               currentPage={movieList.page}
@@ -49,9 +52,10 @@ export default function NewMovies() {
           <Loading />
         </Col>
       )}
-      <Col span={24}>
+        <Col span="24">
         <Footer />
       </Col>
-    </Row>
+      </Row>
+      
   );
 }

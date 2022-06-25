@@ -11,9 +11,12 @@ export default function MovieCatalog(props) {
   } = props;
 
   return results.map(movie => (
-    <Col key={movie.id} xs={4} className="movie-catalog">
-    <MovieCard movie={movie} />
-  </Col>
+
+       <Col key={movie.id}  className="movie-catalog" xs={5} >
+
+        <MovieCard movie={movie} />
+
+      </Col>
   ));
 }
 
