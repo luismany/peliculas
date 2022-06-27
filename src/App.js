@@ -5,9 +5,9 @@ import MenuTop from './componentes/MenuTop/MenuTop';
 import Home from './pages/home';
 import Popular from './pages/popular';
 import NewMovies from './pages/new-movies';
-import Search from './pages/search';
+import Search from './pages/Search/search'
 import Movie from './pages/Movie/movie';
-import Error404 from './pages/error404';
+import Error404 from './pages/Error404/error404';
 
 function App() {
   const { Header, Content } = Layout;
